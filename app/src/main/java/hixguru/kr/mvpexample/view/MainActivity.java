@@ -3,31 +3,24 @@ package hixguru.kr.mvpexample.view;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.textservice.TextInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.google.gson.GsonBuilder;
-import com.jakewharton.rxbinding2.view.RxView;
 import com.jakewharton.rxbinding2.widget.RxTextView;
-import hixguru.kr.mvpexample.Model.User;
+import hixguru.kr.mvpexample.model.User;
 import hixguru.kr.mvpexample.R;
-import hixguru.kr.mvpexample.network.GithubApi;
-import hixguru.kr.mvpexample.network.RetrofitCreator;
 import hixguru.kr.mvpexample.presenter.MainContract;
 import hixguru.kr.mvpexample.presenter.MainPresenterImpl;
-import io.reactivex.SingleObserver;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Predicate;
-import io.reactivex.schedulers.Schedulers;
-import org.reactivestreams.Subscription;
-import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
     @BindView(R.id.et_user_name) EditText etUserName;
     @BindView(R.id.tv_result) TextView tvResult;
 
@@ -53,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             .subscribe(new Consumer<CharSequence>() {
                 @Override
                 public void accept(@NonNull CharSequence charSequence) throws Exception {
-                    Log.e("tta", "accept: charSe" + charSequence);
+                    Log.e(TAG, "accept: charSe" + charSequence);
                     presenter.loadData(charSequence.toString());
                 }
             });
@@ -66,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     protected void onStop() {
+        super.onStop();
         editTextSub.dispose();
     }
 }

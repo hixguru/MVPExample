@@ -1,6 +1,6 @@
 package hixguru.kr.mvpexample.presenter;
 
-import hixguru.kr.mvpexample.Model.User;
+import hixguru.kr.mvpexample.model.User;
 
 /**
  * Created by tta on 2017. 3. 27..

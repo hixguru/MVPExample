@@ -2,8 +2,8 @@ package hixguru.kr.mvpexample.presenter;
 
 import android.util.Log;
 import com.google.gson.GsonBuilder;
-import hixguru.kr.mvpexample.Model.User;
-import hixguru.kr.mvpexample.network.GithubApi;
+import hixguru.kr.mvpexample.model.User;
+import hixguru.kr.mvpexample.network.GitHubApi;
 import hixguru.kr.mvpexample.network.RetrofitCreator;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
@@ -19,7 +19,6 @@ public class MainPresenterImpl implements MainContract.Presenter {
 
     private static final String TAG = MainPresenterImpl.class.getSimpleName();
     private MainContract.View view;
-    private Retrofit retrofit;
 
     public MainPresenterImpl(MainContract.View view) {
         this.view = view;
@@ -27,9 +26,9 @@ public class MainPresenterImpl implements MainContract.Presenter {
 
     @Override
     public void loadData(String userName) {
-        retrofit = RetrofitCreator.create();
+        Retrofit retrofit = RetrofitCreator.create();
 
-        GithubApi api = retrofit.create(GithubApi.class);
+        GitHubApi api = retrofit.create(GitHubApi.class);
         api.getUser(userName)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())

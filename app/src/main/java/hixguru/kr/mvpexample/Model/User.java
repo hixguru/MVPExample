@@ -1,4 +1,4 @@
-package hixguru.kr.mvpexample.Model;
+package hixguru.kr.mvpexample.model;
 
 import com.google.gson.annotations.SerializedName;
 
