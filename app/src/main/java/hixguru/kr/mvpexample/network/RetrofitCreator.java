@@ -11,6 +11,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class RetrofitCreator {
+    private static final String URL = "https://api.github.com";
+
     public static Retrofit create() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -19,7 +21,7 @@ public class RetrofitCreator {
             .addInterceptor(logging)
             .build();
 
-        return new Retrofit.Builder().baseUrl("https://api.github.com")
+        return new Retrofit.Builder().baseUrl(URL)
             .client(client)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())

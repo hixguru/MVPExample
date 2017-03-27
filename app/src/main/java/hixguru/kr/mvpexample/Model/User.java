@@ -8,33 +8,28 @@ import com.google.gson.annotations.SerializedName;
 
 public class User {
     @SerializedName("login") private String login;
+    @SerializedName("gravatar_id") private String gravatarId;
+    @SerializedName("html_url") private String htmlUrl;
     private String id;
-    @SerializedName("gravatarId") private String gravatar_id;
     private String url;
-    @SerializedName("htmlUrl") private String html_url;
-    private String name;
 
     public String getLogin() {
         return login;
+    }
+
+    public String getGravatarId() {
+        return gravatarId;
+    }
+
+    public String getHtmlUrl() {
+        return htmlUrl;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getGravatar_id() {
-        return gravatar_id;
-    }
-
     public String getUrl() {
         return url;
-    }
-
-    public String getHtml_url() {
-        return html_url;
-    }
-
-    public String getName() {
-        return name;
     }
 }
