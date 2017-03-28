@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @BindView(R.id.tv_result) TextView tvResult;
 
     private MainContract.Presenter presenter;
-    private Disposable editTextSub;
+    private Disposable disposable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         presenter = new MainPresenterImpl(this);
 
-        editTextSub = RxTextView.textChanges(etUserName)
+        disposable = RxTextView.textChanges(etUserName)
             .filter(new Predicate<CharSequence>() {
                 @Override
                 public boolean test(@NonNull CharSequence charSequence) throws Exception {
@@ -60,6 +60,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     protected void onStop() {
         super.onStop();
-        editTextSub.dispose();
+        disposable.dispose();
     }
 }
